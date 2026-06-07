@@ -6,7 +6,3 @@ __pycache__/
 venv/
 .vscode/
 .idea/
-
-chrome_profile/
-*/chrome_profile/
-
