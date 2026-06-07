@@ -1,8 +1,13 @@
-.DS_Store
-__pycache__/
-*.pyc
-.env
+# Browser profiles
+chrome_profile/
+browser_profile/
+user-data-dir/
+
+# Python
 .venv/
 venv/
-.vscode/
-.idea/
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
