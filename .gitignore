@@ -6,3 +6,11 @@ __pycache__/
 venv/
 .vscode/
 .idea/
+
+# Chrome profiles
+chrome_profile/
+*/chrome_profile/
+
+# Selenium browser data
+user-data-dir/
+browser_profile/
