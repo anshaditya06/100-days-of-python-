@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-5" style="max-width: 600px;">
+  <h2 class="mb-4">Create Account</h2>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible fade show">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    {% endfor %}
+  {% endwith %}
+
+  <form method="POST" enctype="multipart/form-data" novalidate>
+    {{ form.hidden_tag() }}  {# ← CSRF token, never forget this! #}
+
+    {% macro render_field(field) %}
+      <div class="mb-3">
+        {{ field.label(class="form-label fw-semibold") }}
+        {{ field(class="form-control" + (" is-invalid" if field.errors else "")) }}
+        {% for error in field.errors %}
+          <div class="invalid-feedback">{{ error }}</div>
+        {% endfor %}
+      </div>
+    {% endmacro %}
+
+    {{ render_field(form.username) }}
+    {{ render_field(form.email) }}
+    {{ render_field(form.password) }}
+    {{ render_field(form.confirm_password) }}
+    {{ render_field(form.role) }}
+    {{ render_field(form.bio) }}
+    {{ render_field(form.avatar) }}
+
+    {# Checkbox needs special treatment #}
+    <div class="mb-3 form-check">
+      {{ form.agree(class="form-check-input" + (" is-invalid" if form.agree.errors else "")) }}
+      {{ form.agree.label(class="form-check-label") }}
+      {% for error in form.agree.errors %}
+        <div class="invalid-feedback d-block">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    {{ form.submit(class="btn btn-primary w-100") }}
+  </form>
+</div>
+
+{% endblock %}
